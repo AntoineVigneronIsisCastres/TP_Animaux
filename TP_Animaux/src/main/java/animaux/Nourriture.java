@@ -1,4 +1,4 @@
-package src.main.java.animaux;
+package animaux;
 
 public enum Nourriture {
     Carnivore, Herbivore

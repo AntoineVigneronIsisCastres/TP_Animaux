@@ -11,6 +11,10 @@ public class Savane {
         this.animaux = animaux;
     }
 
+    public List<Animal> getAnimaux() {
+        return this.animaux;
+    }
+
     public void mangerDansLaSavane() {
         for (Animal a : this.animaux) {
             a.manger();
