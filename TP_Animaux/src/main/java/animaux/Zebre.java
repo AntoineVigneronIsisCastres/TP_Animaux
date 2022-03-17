@@ -9,4 +9,9 @@ public class Zebre extends Animal {
     public Zebre(String nom, String sexe){
         super(nom, sexe, Nourriture.Herbivore);
     }
+
+    @Override
+    public String toString() {
+        return "ZEBRE";
+    }
 }

@@ -17,13 +17,13 @@ public class Savane {
 
     public void mangerDansLaSavane() {
         for (Animal a : this.animaux) {
-            a.manger();
+            System.out.print(a.manger());
         }
     }
 
     public void dormirDansLaSavane() {
         for (Animal a : this.animaux) {
-            a.dormir();
+            System.out.print(a.dormir());
         }
     }
 }

@@ -1,7 +1,7 @@
 package animaux;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 public class TestSavane {
 
@@ -9,50 +9,46 @@ public class TestSavane {
         ArrayList<Animal> liste = new ArrayList<Animal>();
         Savane savane1 = new Savane(liste);
 
-        Zebre marty1 = new Zebre("Marty1","M");
-        savane1.getAnimaux().add(marty1);
-        Zebre marty2 = new Zebre("Marty2","M");
-        savane1.getAnimaux().add(marty2);
-        Zebre marty3 = new Zebre("Marty3","F");
-        savane1.getAnimaux().add(marty3);
-        Zebre marty4 = new Zebre("Marty4","M");
-        savane1.getAnimaux().add(marty4);
-        Zebre marty5 = new Zebre("Marty5","M");
-        savane1.getAnimaux().add(marty5);
-        Zebre marty6 = new Zebre("Marty6","F");
-        savane1.getAnimaux().add(marty6);
-        Zebre marty7 = new Zebre("Marty7","F");
-        savane1.getAnimaux().add(marty7);
-        Zebre marty8 = new Zebre("Marty8","M");
-        savane1.getAnimaux().add(marty8);
-        Zebre marty9 = new Zebre("Marty9","F");
-        savane1.getAnimaux().add(marty9);
-        Zebre marty10 = new Zebre("Marty10","F");
-        savane1.getAnimaux().add(marty10);
+        Random rand = new Random();
+        for(int i = 1; i <= 50; i++) {
+            if (rand.nextBoolean()){
+                Zebre marty1 = new Zebre("Marty"+i, rand.nextBoolean() ? "M" : "F");
+                savane1.getAnimaux().add(marty1);
+            } else {
+                Lion alex1 = new Lion("Alex"+i, rand.nextBoolean() ? "M" : "F");
+                savane1.getAnimaux().add(alex1);
+            }
+        }
 
-        Lion alex1 = new Lion("Alex1","M");
-        savane1.getAnimaux().add(alex1);
-        Lion alex2 = new Lion("Alex2","M");
-        savane1.getAnimaux().add(alex2);
-        Lion alex3 = new Lion("Alex3","M");
-        savane1.getAnimaux().add(alex3);
-        Lion alex4 = new Lion("Alex4","M");
-        savane1.getAnimaux().add(alex4);
-        Lion alex5 = new Lion("Alex5","M");
-        savane1.getAnimaux().add(alex5);
-        Lion alex6 = new Lion("Alex6","M");
-        savane1.getAnimaux().add(alex6);
-        Lion alex7 = new Lion("Alex7","M");
-        savane1.getAnimaux().add(alex7);
-        Lion alex8 = new Lion("Alex8","M");
-        savane1.getAnimaux().add(alex8);
-        Lion alex9 = new Lion("Alex9","M");
-        savane1.getAnimaux().add(alex9);
-        Lion alex10 = new Lion("Alex10","M");
-        savane1.getAnimaux().add(alex10);
-
-        savane1.mangerDansLaSavane();
-        savane1.dormirDansLaSavane();
+        int i = 50;
+        int nbjours = 0;
+        while(i>0 && i<=51) {
+            
+            nbjours++;
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("Jour "+nbjours);
+            if(i == 1) {
+                System.out.println("Il ne reste plus que "+savane1.getAnimaux().get(0).getNom()+" dans la savane, quel monde impitoyable...");
+                break;
+            }
+            System.out.println(i+" animaux cohabitent dans la savane");
+            Animal animalchoisi1 = savane1.getAnimaux().get(rand.nextInt(i));
+            int randomindex = rand.nextInt(i);
+            // Dans le cas où l'index aléatoire choisi pour un animal est égal à 0, lors de la soustraction
+            // de la taille de la savane moins l'index, on obtient la taille de la savane, entrainant
+            // une out of bounds exception, j'ai choisi de mettre randomindex aléatoirement pour éviter
+            // de regénérer un index aléatoire égal à 0
+            if(randomindex == 0) {
+                randomindex = 1;
+            }
+            Animal animalchoisi2 = savane1.getAnimaux().get(randomindex != savane1.getAnimaux().indexOf(animalchoisi1) ? randomindex : i-randomindex);
+            animalchoisi1.rencontrer(animalchoisi2, savane1); 
+            int nbanimauxrestants = 0;
+            for(Animal a : savane1.getAnimaux()) {
+                nbanimauxrestants += 1;
+            }
+            i = nbanimauxrestants;
+       }
     }
     
 }
